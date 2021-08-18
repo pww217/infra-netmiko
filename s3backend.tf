@@ -7,7 +7,7 @@ data "aws_iam_user" "terraform" {
 
 # Bucket
 resource "aws_s3_bucket" "netmiko-ebs-tfremotestate" {
-  bucket        = var.bucket_name
+  bucket        = "netmiko-ebs-tfremotestate"
   force_destroy = true
   acl           = "private"
 
@@ -23,7 +23,7 @@ resource "aws_s3_bucket" "netmiko-ebs-tfremotestate" {
                 "AWS": "${data.aws_iam_user.terraform.arn}"
             },
             "Action": "s3:*",
-            "Resource": "arn:aws:s3:::${var.bucket_name}/*"
+            "Resource": "arn:aws:s3:::netmiko-ebs-tfremotestate/*"
         }
     ]
 }
