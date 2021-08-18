@@ -4,7 +4,7 @@ variable "key_name" {}
 variable "key_dir" {}
 
 variable "region" {
-    default = "us-east-1"
+  default = "us-east-1"
 }
 
 variable "bucket_name" {}
