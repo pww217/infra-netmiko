@@ -18,7 +18,7 @@ jobs:
       - name: 'Change to dev directory'
         run: cd environments/dev/
       - name: 'List files'
-        run: lls -l
+        run: ls -la
       - name: 'Setup Terraform'
         uses: hashicorp/setup-terraform@v1
         with:
