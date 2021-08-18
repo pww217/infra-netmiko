@@ -1,7 +1,7 @@
 name: 'Terraform-Deploy'
 on:
   push:
-    branches: [ main]
+    branches: [ testing ]
 jobs:
   terraform:
     name: "Terraform-Deploy"
@@ -14,25 +14,27 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: "us-east-1"
       - name: 'Checkout'
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2\
+      - name: 'Change to dev directory'
+        uses: cd environments/dev/
       - name: 'Setup Terraform'
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_wrapper: true
-      - name: "Terraform Init"
+      - name: "Terraform ../../manifests/ Init"
         run: terraform init
 
       - name: "Terraform Format"
-        run: terraform fmt
+        run: terraform -chdir=../../manifests/ fmt
       - name: "Terraform Validate"
         run: terraform validate
 
-      - name: "Terraform Plan"
+      - name: "Terraform ../../manifests/ Plan"
         run: terraform plan
 
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
         run: exit 1
 
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
+      #- name: Terraform ../../manifests/ Apply
+      #  run: terraform apply -auto-approve
