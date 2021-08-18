@@ -21,20 +21,20 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_wrapper: true
-      - name: "Terraform ../../manifests/ Init"
+      - name: "Terraform -chdir=../../manifests init"
         run: terraform init
 
       - name: "Terraform Format"
-        run: terraform -chdir=../../manifests/ fmt
+        run: terraform -chdir=../../manifests fmt
       - name: "Terraform Validate"
         run: terraform validate
 
-      - name: "Terraform ../../manifests/ Plan"
+      - name: "Terraform -chdir=../../manifests plan"
         run: terraform plan
 
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
         run: exit 1
 
-      #- name: Terraform ../../manifests/ Apply
+      #- name: Terraform -chdir=../../manifests/ Apply
       #  run: terraform apply -auto-approve
