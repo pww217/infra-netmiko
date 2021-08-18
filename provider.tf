@@ -4,8 +4,8 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "netmiko-ebs-tfremotestate"
-    key    = "netmiko-ebs-tfremotestate.tfstate"
+    bucket = "pww217-s3-backend-remote"
+    key    = "pww217-s3-backend-remote.state"
     region = "us-east-1"
   }
 }

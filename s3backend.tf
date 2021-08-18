@@ -6,8 +6,8 @@ data "aws_iam_user" "terraform" {
 }
 
 # Bucket
-resource "aws_s3_bucket" "netmiko-ebs-tfremotestate" {
-  bucket        = "netmiko-ebs-tfremotestate"
+resource "aws_s3_bucket" "pww217-s3-backend-remote" {
+  bucket        = "pww217-s3-backend-remote"
   force_destroy = true
   acl           = "private"
 
@@ -23,15 +23,15 @@ resource "aws_s3_bucket" "netmiko-ebs-tfremotestate" {
                 "AWS": "${data.aws_iam_user.terraform.arn}"
             },
             "Action": "s3:*",
-            "Resource": "arn:aws:s3:::netmiko-ebs-tfremotestate/*"
+            "Resource": "arn:aws:s3:::pww217-s3-backend-remote/*"
         }
     ]
 }
 EOF
 }
 
-resource "aws_s3_bucket_public_access_block" "red30-tfremotestate" {
-  bucket = aws_s3_bucket.netmiko-ebs-tfremotestate.id
+resource "aws_s3_bucket_public_access_block" "s3-backend-remote-lock" {
+  bucket = aws_s3_bucket.pww217-s3-backend-remote.id
 
   block_public_acls       = true
   block_public_policy     = true
@@ -39,7 +39,7 @@ resource "aws_s3_bucket_public_access_block" "red30-tfremotestate" {
   restrict_public_buckets = true
 }
 resource "aws_dynamodb_table" "tf_db_statelock" {
-  name           = "red30-tfstatelock"
+  name           = "s3-backend-remote-lock"
   read_capacity  = 20
   write_capacity = 20
   hash_key       = "LockID"
