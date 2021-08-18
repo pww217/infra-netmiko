@@ -15,28 +15,24 @@ jobs:
           aws-region: "us-east-1"
       - name: 'Checkout'
         uses: actions/checkout@v2
-      - name: 'Change to dev directory'
-        run: cd environments/dev/
-      - name: 'List files'
-        run: ls -la
       - name: 'Setup Terraform'
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_wrapper: true
-      - name: "Terraform -chdir=../../manifests init"
+      - name: "Terraform -chdir=manifests init"
         run: terraform init
 
       - name: "Terraform Format"
-        run: terraform -chdir=../../manifests fmt
+        run: terraform -chdir=manifests fmt
       - name: "Terraform Validate"
         run: terraform validate
 
-      - name: "Terraform -chdir=../../manifests plan"
+      - name: "Terraform -chdir=manifests plan"
         run: terraform plan
 
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
         run: exit 1
 
-      #- name: Terraform -chdir=../../manifests/ Apply
+      #- name: Terraform -chdir=manifests Apply
       #  run: terraform apply -auto-approve
