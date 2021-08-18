@@ -1,6 +1,7 @@
 name: 'Terraform-Deploy'
 on:
-  - push
+  push:
+    branches: [ main]
 jobs:
   terraform:
     name: "Terraform-Deploy"
