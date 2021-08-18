@@ -17,6 +17,8 @@ jobs:
         uses: actions/checkout@v2
       - name: 'Change to dev directory'
         run: cd environments/dev/
+      - name: 'List files'
+        run: lls -l
       - name: 'Setup Terraform'
         uses: hashicorp/setup-terraform@v1
         with:
