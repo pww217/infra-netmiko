@@ -14,3 +14,9 @@ variable "cidr" {}
 variable "azs" {}
 variable "private_subnets" {}
 variable "public_subnets" {}
+
+# ECS
+variable "cluster_name" {}
+variable "capacity_provider" {}
+variable "task_name" {}
+variable "task_image" {}
