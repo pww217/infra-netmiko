@@ -2,12 +2,12 @@
 
 # Terraform User
 data "aws_iam_user" "terraform" {
-  user_name = "terraform"
+  user_name = var.user_name
 }
 
 # Bucket
 resource "aws_s3_bucket" "pww217-s3-backend-remote" {
-  bucket        = "pww217-s3-backend-remote"
+  bucket        = var.bucket_name
   force_destroy = true
   acl           = "private"
 

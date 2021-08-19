@@ -2,13 +2,11 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "~> 3.0"
 
-  cidr = "10.0.0.0/27"
+  cidr = var.cidr
 
-  azs             = ["us-east-1a", "us-east-1b"]
-  private_subnets = ["10.0.0.0/28"]
-  public_subnets  = ["10.0.0.16/28"]
+  azs             = var.azs
+  private_subnets = var.private_subnets
+  public_subnets  = var.public_subnets
 
-  tags = {
-    Environment = "Development"
-  }
+  tags = var.tags
 }
