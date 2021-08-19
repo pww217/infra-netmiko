@@ -26,7 +26,7 @@ module "container" {
   source                       = "cloudposse/ecs-container-definition/aws"
   container_name               = "netmiko-web"
   container_image              = var.container_image
-  command                      = ["python3 , main.py"]
+  command                      = ["python3 main.py"]
   container_memory             = 512
   container_memory_reservation = 512
   working_directory            = "/app"

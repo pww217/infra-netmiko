@@ -1,6 +1,6 @@
 module "sg" {
   source = "cloudposse/security-group/aws"
-  name = "ECS_SG"
+  name   = "ECS_SG"
 
   vpc_id = module.vpc.vpc_id
 

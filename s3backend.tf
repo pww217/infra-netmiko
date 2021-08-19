@@ -8,7 +8,7 @@ data "aws_iam_user" "terraform" {
 # Bucket
 resource "aws_s3_bucket" "pww217-s3-backend-remote" {
   bucket        = var.bucket_name
-  force_destroy = true
+  force_destroy = false
   acl           = "private"
 
   # Grant read/write access to the terraform user
