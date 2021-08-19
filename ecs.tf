@@ -20,15 +20,13 @@ module "ecs" {
   }
 }
 
-
-
 # ECS Task Definition
 
 module "container" {
   source                       = "cloudposse/ecs-container-definition/aws"
   container_name               = "netmiko-web"
-  container_image              = "http://hub.docker.com/pww217/netmiko-run"
-  command                      = ["python3 ,main.py"]
+  container_image              = var.container_image
+  command                      = ["python3 , main.py"]
   container_memory             = 512
   container_memory_reservation = 512
   working_directory            = "/app"
@@ -42,11 +40,11 @@ module "container" {
 }
 
 resource "aws_ecs_task_definition" "service" {
-  family                   = "netmiko"
-  cpu                      = 256 
-  memory                   = 512
-  container_definitions    = module.container.json_map_encoded_list
-  execution_role_arn       = "arn:aws:iam::726617996409:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS"
+  family                = "netmiko"
+  cpu                   = 256
+  memory                = 512
+  container_definitions = module.container.json_map_encoded_list
+  #execution_role_arn       = "arn:aws:iam::726617996409:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   tags                     = var.tags

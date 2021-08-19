@@ -19,4 +19,4 @@ variable "public_subnets" {}
 variable "cluster_name" {}
 variable "capacity_provider" {}
 variable "task_name" {}
-variable "task_image" {}
+variable "container_image" {}

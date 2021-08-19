@@ -1,1 +1,0 @@
-# ECS IAM Service Role
