@@ -1,6 +1,5 @@
 module "sg" {
   source = "cloudposse/security-group/aws"
-  name   = "ECS_SG"
 
   vpc_id = module.vpc.vpc_id
 
@@ -10,8 +9,8 @@ module "sg" {
       from_port   = 5000
       to_port     = 5000
       protocol    = "tcp"
-      cidr_blocks = []
-      self        = true
+      cidr_blocks = ["0.0.0.0/0"]
+      self = null
       description = "Allow HTTP from inside the security group"
     },
 

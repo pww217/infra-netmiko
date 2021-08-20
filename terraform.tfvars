@@ -5,9 +5,10 @@ tags = {
   Environment = "Development"
 }
 
+# Backend
 bucket_name = "pww217-s3-backend-remote"
 
-#VPC
+# VPC
 cidr            = "10.0.0.0/27"
 azs             = ["us-east-1a", "us-east-1b"]
 private_subnets = ["10.0.0.0/28"]
