@@ -10,7 +10,7 @@ module "sg" {
       to_port     = 5000
       protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
-      self = null
+      self        = null
       description = "Allow HTTP from inside the security group"
     },
 

@@ -28,18 +28,18 @@ resource "aws_ecs_service" "netmiko-web" {
   task_definition = aws_ecs_task_definition.netmiko-web.arn
   desired_count   = 2
   network_configuration {
-    subnets        = module.vpc.public_subnets
-    security_groups = [module.sg.id]
+    subnets          = module.vpc.public_subnets
+    security_groups  = [module.sg.id]
     assign_public_ip = true
-    }
   }
+}
 
 # ECS Task Definition
 
 module "container" {
-  source          = "cloudposse/ecs-container-definition/aws"
-  container_name  = var.task_name
-  container_image = var.container_image
+  source                       = "cloudposse/ecs-container-definition/aws"
+  container_name               = var.task_name
+  container_image              = var.container_image
   container_memory             = 512
   container_memory_reservation = 512
   working_directory            = "/app"
