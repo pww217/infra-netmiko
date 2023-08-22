@@ -26,7 +26,7 @@ resource "aws_ecs_service" "netmiko-web" {
   name            = var.task_name
   cluster         = module.ecs.ecs_cluster_arn
   task_definition = aws_ecs_task_definition.netmiko-web.arn
-  desired_count   = 2
+  desired_count   = var.desired_container_count
   network_configuration {
     subnets          = module.vpc.public_subnets
     security_groups  = [module.sg.id]

@@ -1,5 +1,12 @@
 provider "aws" {
   region = var.region
+  default_tags {
+    tags = {
+      IaC         = "Terraform"
+      Application = "Netmiko"
+      Environment = "Prod"
+    }
+  }
 }
 
 terraform {

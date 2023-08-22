@@ -20,3 +20,4 @@ variable "cluster_name" {}
 variable "capacity_provider" {}
 variable "task_name" {}
 variable "container_image" {}
+variable "desired_container_count" {}

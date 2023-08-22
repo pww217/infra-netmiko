@@ -1,9 +1,15 @@
-# General
-region = "us-east-1"
-
 tags = {
   Environment = "Development"
 }
+
+task_name         = "netmiko-web-dev"
+
+capacity_provider = "FARGATE_SPOT"
+
+desired_container_count = 1
+
+# General
+region = "us-east-1"
 
 # Backend
 bucket_name = "pww217-s3-backend-remote"
@@ -17,6 +23,4 @@ user_name       = "terraform"
 
 # ECS
 cluster_name      = "default"
-capacity_provider = "FARGATE"
-task_name         = "netmiko-web"
 container_image   = "pww217/netmiko-web"
